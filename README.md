@@ -46,6 +46,7 @@ node server.js
 ### Running server nodemon
 
 ````
+npm run dev
 
 ````
 
