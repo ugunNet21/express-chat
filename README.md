@@ -58,6 +58,27 @@ npm run dev
   },
 ````
 
+### curl
+
+````
+curl http://localhost:3000/api/chats | jq
+
+````
+
+````
+curl -X GET http://localhost:3000/api/chats/999
+
+````
+
+````
+curl -X PATCH http://localhost:3000/api/chats/1 -H "Content-Type: application/json" -d '{"message": "Updated message", "sender": "Updated sender"}'
+
+````
+
+````
+curl -X DELETE http://localhost:3000/api/chats/1
+
+````
 
 ### Hit api
 
@@ -105,4 +126,26 @@ http://localhost:3000/api/chats/
 }
 
 
+````
+
+### Post data method post
+
+````
+- Headers :
+ * key: Content-Type
+ * value : application/json
+
+````
+
+### di body json
+````
+{
+    "message": "halo",
+    "sender": "ugun"
+}
+
+````
+
+````
+http://localhost:3000/api/chats/
 ````
