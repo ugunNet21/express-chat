@@ -19,3 +19,26 @@ chat-app/
 └── README.md
 
 ````
+
+## Create folder Project
+
+````
+mkdir chat-app
+cd chat-app
+npm init -y
+
+````
+
+## Create Project
+
+````
+npm install express mysql2 sequelize cors dotenv
+
+````
+
+## Running Server
+
+````
+node server.js
+
+````
