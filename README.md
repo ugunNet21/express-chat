@@ -65,6 +65,16 @@ curl http://localhost:3000/api/chats | jq
 
 ````
 
+````
+curl -X GET http://localhost:3000/api/chats/999
+
+````
+
+````
+curl -X PATCH http://localhost:3000/api/chats/1 -H "Content-Type: application/json" -d '{"message": "Updated message", "sender": "Updated sender"}'
+
+````
+
 ### Hit api
 
 ````
