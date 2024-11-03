@@ -112,3 +112,25 @@ http://localhost:3000/api/chats/
 
 
 ````
+
+### Post data method post
+
+````
+- Headers :
+ * key: Content-Type
+ * value : application/json
+
+````
+
+### di body json
+````
+{
+    "message": "halo",
+    "sender": "ugun"
+}
+
+````
+
+````
+http://localhost:3000/api/chats/
+````
