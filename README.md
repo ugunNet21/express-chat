@@ -80,6 +80,11 @@ curl -X DELETE http://localhost:3000/api/chats/1
 
 ````
 
+````
+curl -X POST http://localhost:3000/api/chats/dummy
+
+````
+
 ### Hit api
 
 ````
