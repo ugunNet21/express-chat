@@ -58,6 +58,12 @@ npm run dev
   },
 ````
 
+### curl
+
+````
+curl http://localhost:3000/api/chats | jq
+
+````
 
 ### Hit api
 
