@@ -23,32 +23,107 @@ exports.getAllChats = async (req, res) => {
 
 exports.createChat = async (req, res) => {
     try {
-        const chat = await Chat.create(req.body);
-        res.status(201).json(chat);
+        // Pastikan req.body memiliki data yang diperlukan
+        const { message, sender } = req.body;
+
+        // Validasi data yang diterima
+        if (!message || !sender) {
+            return res.status(400).json({
+                code: 400,
+                message: 'Message and sender are required',
+                data: null
+            });
+        }
+
+        // Buat chat baru
+        const chat = await Chat.create({ message, sender });
+
+        // Respons dengan format yang diinginkan
+        res.status(201).json({
+            code: 201,
+            message: 'Chat created successfully',
+            data: chat
+        });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        // Menangani kesalahan
+        res.status(500).json({
+            code: 500,
+            message: error.message,
+            data: null
+        });
     }
 };
 
 exports.updateChat = async (req, res) => {
     try {
         const chat = await Chat.findByPk(req.params.id);
-        if (!chat) return res.status(404).json({ message: 'Chat not found' });
-        await chat.update(req.body);
-        res.json(chat);
+        if (!chat) {
+            return res.status(404).json({
+                code: 404,
+                message: 'Chat not found',
+                data: null
+            });
+        }
+        const { message, sender } = req.body;
+        await chat.update({ message, sender }); // Update fields based on request body
+        res.json({
+            code: 200,
+            message: 'Chat updated successfully',
+            data: chat
+        });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({
+            code: 400,
+            message: error.message,
+            data: null
+        });
     }
 };
+
+exports.getChatById = async (req, res) => {
+    try {
+        const chat = await Chat.findByPk(req.params.id);
+        if (!chat) {
+            return res.status(404).json({
+                code: 404,
+                message: 'Chat not found',
+                data: null
+            });
+        }
+
+        res.json({
+            code: 200,
+            message: 'Chat retrieved successfully',
+            data: chat.dataValues
+        });
+    } catch (error) {
+        res.status(500).json({
+            code: 500,
+            message: error.message,
+            data: null
+        });
+    }
+};
+
 
 exports.deleteChat = async (req, res) => {
     try {
         const chat = await Chat.findByPk(req.params.id);
-        if (!chat) return res.status(404).json({ message: 'Chat not found' });
+        if (!chat) {
+            return res.status(404).json({
+                code: 404,
+                message: 'Chat not found',
+                data: null
+            });
+        }
         await chat.destroy();
-        res.status(204).send();
+        res.status(204).send(); // No content to send back
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({
+            code: 500,
+            message: error.message,
+            data: null
+        });
     }
 };
 
