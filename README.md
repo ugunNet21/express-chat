@@ -75,6 +75,11 @@ curl -X PATCH http://localhost:3000/api/chats/1 -H "Content-Type: application/js
 
 ````
 
+````
+curl -X DELETE http://localhost:3000/api/chats/1
+
+````
+
 ### Hit api
 
 ````
